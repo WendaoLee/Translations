@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Python 3.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-06 00:23+0000\n"
-"PO-Revision-Date: 2022-11-15 21:58+0800\n"
+"PO-Revision-Date: 2022-11-16 11:21+0800\n"
 "Last-Translator: \n"
 "Language-Team: ChineseLanguage: zh\n"
 "Language: zh\n"
@@ -287,7 +287,7 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:236
 msgid ":ref:`sqlite3-howtos` for further reading:"
-msgstr ""
+msgstr "阅读 :ref:`sqlite3-howtos` 以获取更多信息："
 
 #: ../../library/sqlite3.rst:238
 msgid ":ref:`sqlite3-placeholders`"
@@ -312,15 +312,15 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:248
 msgid "Reference"
-msgstr ""
+msgstr "参考"
 
 #: ../../library/sqlite3.rst:256
 msgid "Module functions"
-msgstr ""
+msgstr "模块中的函数"
 
 #: ../../library/sqlite3.rst:263
 msgid "Open a connection to an SQLite database."
-msgstr ""
+msgstr "打开一个与 SQLite 数据库的连接。"
 
 #: ../../library/sqlite3.rst:0
 msgid "Parameters"
