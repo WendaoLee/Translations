@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Python 3.11\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-16 04:27+0000\n"
-"PO-Revision-Date: 2022-11-16 14:37+0800\n"
+"PO-Revision-Date: 2022-11-22 19:20+0800\n"
 "Last-Translator: LeeWendao, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/python-doc/"
 "teams/5390/zh_CN/)\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #: ../../library/sqlite3.rst:2
 msgid ":mod:`sqlite3` --- DB-API 2.0 interface for SQLite databases"
@@ -369,6 +369,14 @@ msgid ""
 "parameter is set; :class:`str` will be returned instead. By default "
 "(``0``), type detection is disabled."
 msgstr ""
+"控制是否以及如何使用由 :func:`register_converter` 注册的转换器 (converter) "
+"将并非由 :ref:`<sqlite3-types>` 原生支持的数据类型转换为 Python 类型。将它设"
+"置为常量 :const:`PARSE_DECLTYPES` 与 常量 :const:`PARSE_COLNAMES` 的任意联合"
+"（combination，使用位运算符按位或 ``|`` 创建）以启用它。如果两个常量标志 "
+"(flags) 都被设置，那么列名 ( :const:`PARSE_COLNAMES` ) 将优先于声明的类型 "
+"( :const:`PARSE_DECLTYPES` ) 。同样，请注意，即使您设置了 *detect_types* ，"
+"您依然无法对生成的字段（例如 ``max(data)`` ）进行类型检测，此时它将会返回一"
+"个字符串 :class:`str`。该参数的默认值为(``0``)，类型检测被禁用。"
 
 #: ../../library/sqlite3.rst:292
 msgid ""
@@ -378,6 +386,11 @@ msgid ""
 "opening transactions implicitly. See :ref:`sqlite3-controlling-"
 "transactions` for more."
 msgstr ""
+"该参数代表数据库连接的事务控制级别 ( :attr:`~Connection."
+"isolation_level` ) ，它将控制数据库事务 (transactions) 是否以及如何隐式创"
+"建 。它的可取值为 ``\"DEFERRED\"``（默认值），``\"EXCLUSIVE\"``，``"
+"\"IMMEDIATE\"`` 或 ``None``（取用该值将禁止事务的隐式创建）。请参阅 :ref:"
+"`sqlite3-controlling-transactions` 以获取更多信息。"
 
 #: ../../library/sqlite3.rst:300
 msgid ""
@@ -385,18 +398,26 @@ msgid ""
 "``False``, the connection may be shared across multiple threads; if so, "
 "write operations should be serialized by the user to avoid data corruption."
 msgstr ""
+"如果将该参数的值设置为 ``True``（默认值），只有创建它的线程 (thread) 能够使"
+"用该连接；如果将该参数的值设置为 ``False``，那么连接可以被多个线程共享，倘若"
+"您如此作为，您应该将写操作 (write operations) 序列化 (serialized) 以避免数据"
+"污染 (data corruption) 。"
 
 #: ../../library/sqlite3.rst:306
 msgid ""
 "A custom subclass of :class:`Connection` to create the connection with, if "
 "not the default :class:`Connection` class."
 msgstr ""
+"如果您不想使用默认的 :class:`Connection` 类创建连接，那么您可以通过传入一个"
+"自定义的 :class:`Connection` 类的子类给该参数以创建连接。"
 
 #: ../../library/sqlite3.rst:310
 msgid ""
 "The number of statements that :mod:`!sqlite3` should internally cache for "
 "this connection, to avoid parsing overhead. By default, 128 statements."
 msgstr ""
+"该参数指明 :mod:`sqlite3` 模块应该为该连接进行内部缓存的语句 (statements) 数"
+"量。默认情况下，它的值为128。"
 
 #: ../../library/sqlite3.rst:315
 msgid ""
@@ -406,40 +427,46 @@ msgid ""
 "absolute. The query string allows passing parameters to SQLite, enabling "
 "various :ref:`sqlite3-uri-tricks`."
 msgstr ""
+"如果将该参数的值设置为 ``True`` ，参数 *database* 将会被解释为一个由文件路径"
+"与可选的查询字符串组成的 :abbr:`URI (Uniform Resource Identifier)` 链接。链"
+"接的前缀协议部分 (schema part) *必需*是 ``\"file:\"``，后面的文件路径可以是"
+"相对路径或绝对路径。查询字符串允许向 SQLite 传递参数，以实现不同的 :ref:"
+"`sqlite3-uri-tricks` 。"
 
 #: ../../library/sqlite3.rst:0
 msgid "Return type"
-msgstr ""
+msgstr "返回类型"
 
 #: ../../library/sqlite3.rst:326
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``sqlite3.connect`` with "
 "argument ``database``."
 msgstr ""
-"引发一个 :ref:`审计事件 <auditing>` ``sqlite3.connect``，附带参数 "
-"``database``。"
+"使用它将引发一个附带参数 ``database`` 的 :ref:`审计事件 (auditing event) "
+"<auditing>` ``sqlite3.connect`` 。"
 
 #: ../../library/sqlite3.rst:327
 msgid ""
 "Raises an :ref:`auditing event <auditing>` ``sqlite3.connect/handle`` with "
 "argument ``connection_handle``."
 msgstr ""
-"引发一个 :ref:`审计事件 <auditing>` ``sqlite3.connect/handle``，附带参数 "
-"``connection_handle``。"
+"使用它将引发一个附带参数 ``connection_handle``的 :ref:`审计事件 <auditing>` "
+"``sqlite3.connect/handle``。"
 
 #: ../../library/sqlite3.rst:329
 msgid "The *uri* parameter."
-msgstr ""
+msgstr "参数 *uri* 。"
 
 #: ../../library/sqlite3.rst:332
 msgid ""
 "*database* can now also be a :term:`path-like object`, not only a string."
 msgstr ""
-"*database* 现在可以是一个 :term:`path-like object` 对象了，不仅仅是字符串。"
+"*database* 现在可以是一个 :term:`path-like object` 对象了，而不仅仅是字符"
+"串。"
 
 #: ../../library/sqlite3.rst:335
 msgid "The ``sqlite3.connect/handle`` auditing event."
-msgstr ""
+msgstr "审计事件 ``sqlite3.connect/handle`` 。"
 
 #: ../../library/sqlite3.rst:340
 msgid ""
@@ -448,17 +475,25 @@ msgid ""
 "is performed, other than checking that there are no unclosed string "
 "literals and the statement is terminated by a semicolon."
 msgstr ""
+"如果传入的字符串语句 (statement) 看起来像是包括一条或多条完整的 SQL 语句，那"
+"么该函数将返回 ``True`` 。请注意，除了检查未封闭的字符串字面 (unclosed "
+"string literals) 以及语句是否以分号结束外，它不会执行任何的语法检查 "
+"(syntactic verification) 与语法解析 (synatatic parsing) 。"
 
 #: ../../library/sqlite3.rst:346
 msgid "For example:"
 msgstr "例如:"
 
 #: ../../library/sqlite3.rst:355
+#, fuzzy
 msgid ""
 "This function may be useful during command-line input to determine if the "
 "entered text seems to form a complete SQL statement, or if additional input "
 "is needed before calling :meth:`~Cursor.execute`."
 msgstr ""
+"该函数可能在这样的情形下非常有用：在通过命令行 (command-line) 输入数据时，可"
+"使用该函数判断输入文本是否可以构成一个完成的 SQL 语句，或者判断在调用函数 :"
+"meth:`~Cursor.execute` 前是否还需要额外的输入，"
 
 #: ../../library/sqlite3.rst:361
 msgid ""
@@ -468,12 +503,19 @@ msgid ""
 "*flag* set to ``True``. Afterwards, you will get tracebacks from callbacks "
 "on :data:`sys.stderr`. Use ``False`` to disable the feature again."
 msgstr ""
+"是否启用回调回溯 (callback tracebacks) 。默认情况下，在 SQLite 中，您不会在"
+"用户定义的函数、聚合函数 (aggregates) 、转换函数 (converters) 、验证回调函"
+"数 (authorizer callbacks) 等中得到任何回溯信息。如果您想调试它们，您可以在将"
+"形式参数 *flag* 设置为 ``True`` 的情况下调用该函数。之后您便可以从 :data:"
+"`sys.stderr` 的回调中得到回溯信息。使用 ``False`` 将再次禁用该功能。"
 
 #: ../../library/sqlite3.rst:368
 msgid ""
 "Register an :func:`unraisable hook handler <sys.unraisablehook>` for an "
 "improved debug experience:"
 msgstr ""
+"同样，您可以注册一个 :func:`unraisable hook handler <sys.unraisablehook>` 以"
+"改善您的调试体验："
 
 #: ../../library/sqlite3.rst:393
 msgid ""
@@ -482,6 +524,9 @@ msgid ""
 "its sole argument, and must return a value of a :ref:`type that SQLite "
 "natively understands <sqlite3-types>`."
 msgstr ""
+"注册一个可调用的适配器 (adapter) 以将一个 Python 类型适配为一个 SQLite 类"
+"型。适配器应该以一个类型为 *type* 的 Python 对象作为它的唯一参数传入调用，并"
+"且必需返回能被 :ref:`SQLite 原生支持的类型的一个值 <sqlite3-types>` 。"
 
 #: ../../library/sqlite3.rst:401
 msgid ""
@@ -492,16 +537,21 @@ msgid ""
 "Consult the parameter *detect_types* of :func:`connect` for information "
 "regarding how type detection works."
 msgstr ""
+"注册一个可调用的转换器 (converter) ，它能够将 SQLite 对象转换为一个特定类型"
+"的 Python 对象。转换器将会对所有类型为 *typename* 的 SQLite 值进行调用；它会"
+"被传递给一个 :class:`bytes` 对象并且应该返回一个所需的 Python 类型的对象。您"
+"可以参考函数 :func:`connect` 的形式参数 *detect_types* 的文档，以了解关于类"
+"型检测 (detection works) 是如何工作的详细信息。"
 
 #: ../../library/sqlite3.rst:409
 msgid ""
 "Note: *typename* and the name of the type in your query are matched case-"
 "insensitively."
-msgstr ""
+msgstr "注：*typename* 以及您在查询中使用的类型名是不大小写敏感的。"
 
 #: ../../library/sqlite3.rst:416
 msgid "Module constants"
-msgstr ""
+msgstr "模块常量"
 
 #: ../../library/sqlite3.rst:420
 msgid ""
