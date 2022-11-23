@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Python 3.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-22 04:31+0000\n"
-"PO-Revision-Date: 2022-11-22 19:41+0800\n"
+"PO-Revision-Date: 2022-11-23 14:49+0800\n"
 "Last-Translator: LeeWendao <LeeWendao@outlook.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/python-doc/"
 "teams/5390/zh_CN/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.1\n"
 
 #: ../../library/sqlite3.rst:2
 msgid ":mod:`sqlite3` --- DB-API 2.0 interface for SQLite databases"
@@ -545,12 +545,18 @@ msgid ""
 "column name, as the converter dictionary key. The type name must be wrapped "
 "in square brackets (``[]``)."
 msgstr ""
+"通过将该标志值 (flag value) 传递给 :func:`connect` 的形式参数 "
+"*detect_types* ，使得它将会通过从查询的列名中解析出来的类型名称作为寻找转换"
+"器 (converter) 的字典键以寻找对应的转换器函数 (converter function) 将 "
+"SQLite 对象转换为特定的 Python 对象。类型名称必须被包裹在方括号中 "
+"(``[]``) 。"
 
 #: ../../library/sqlite3.rst:407
 msgid ""
 "This flag may be combined with :const:`PARSE_DECLTYPES` using the ``|`` "
 "(bitwise or) operator."
 msgstr ""
+"该标志值可以通过操作符 ``|``（按位或）与 :const:`PARSE_DECLTYPES` 一起使用。"
 
 #: ../../library/sqlite3.rst:412
 msgid ""
@@ -560,32 +566,40 @@ msgid ""
 "look up a converter function using the first word of the declared type as "
 "the converter dictionary key. For example:"
 msgstr ""
+"通过将该标志值 (flag value) 传递给 :func:`connect` 的形式参数 "
+"*detect_types* ，使得它将会通过使用每一列对应的声明类型 (declared type) 寻找"
+"对应的转换器函数 (converter function) 。当一张数据库的表创建的时候，类型便会"
+"被声明。 :mod:`!sqlite3` 模块将会使用声明类型的第一个词作为寻找转换器的字典"
+"键以寻找对应的转换器函数。例如："
 
 #: ../../library/sqlite3.rst:428
 msgid ""
 "This flag may be combined with :const:`PARSE_COLNAMES` using the ``|`` "
 "(bitwise or) operator."
 msgstr ""
+"该标志值可以通过操作符 ``|``（按位或）与 :const:`PARSE_COLNAMES` 一起使用。"
 
 #: ../../library/sqlite3.rst:435
 msgid ""
 "Flags that should be returned by the *authorizer_callback* callable passed "
 "to :meth:`Connection.set_authorizer`, to indicate whether:"
 msgstr ""
+"作为传递给函数 :meth:`Connection.set_authorizer` 的形式参数 "
+"*authorizer_callback* 的回调函数应该返回的标志 (flags) ，以表明是否："
 
 #: ../../library/sqlite3.rst:438
 msgid "Access is allowed (:const:`!SQLITE_OK`),"
-msgstr ""
+msgstr "访问被允许 (:const:`!SQLITE_OK`) ，"
 
 #: ../../library/sqlite3.rst:439
 msgid ""
 "The SQL statement should be aborted with an error (:const:`!SQLITE_DENY`)"
-msgstr ""
+msgstr "当错误发生时 SQL 语句应该被终止 (:const:`!SQLITE_DENY`) "
 
 #: ../../library/sqlite3.rst:440
 msgid ""
 "The column should be treated as a ``NULL`` value (:const:`!SQLITE_IGNORE`)"
-msgstr ""
+msgstr "该列应该被视为 ``NULL`` 值 (:const:`!SQLITE_IGNORE`)"
 
 #: ../../library/sqlite3.rst:444
 msgid ""
@@ -601,6 +615,8 @@ msgid ""
 "the :mod:`!sqlite3` module. Required by the DB-API. Hard-coded to ``\"qmark"
 "\"``."
 msgstr ""
+"指明 :mod:`!sqlite3` 模块所期望的参数标记格式 (parameter marker formatting) "
+"的字符串常量。根据 DB-API 的需要设置。硬编码为 ``\"qmark\"`` 。"
 
 #: ../../library/sqlite3.rst:455
 msgid ""
@@ -609,17 +625,22 @@ msgid ""
 "supports. However, the DB-API does not allow multiple values for the "
 "``paramstyle`` attribute."
 msgstr ""
+":mod:`!sqlite3` 模块支持这几个 DB-API 参数样式 (parameter styles) ： "
+"``qmark``,``numeric``, ``named`` 。这是因为底层的 SQLite 库支持而有的结果。"
+"但是，请注意，DB-API 并不支持属性 ``paramstyle`` 有多个值。"
 
 #: ../../library/sqlite3.rst:463
 msgid ""
 "Version number of the runtime SQLite library as a :class:`string <str>`."
-msgstr ""
+msgstr "一个 :class:`字符串 <str>` ，指明运行时的 SQLite 库的版本号。"
 
 #: ../../library/sqlite3.rst:467
 msgid ""
 "Version number of the runtime SQLite library as a :class:`tuple` of :class:"
 "`integers <int>`."
 msgstr ""
+"一个由 :class:`整数 <int>` 组成的 :class:`元组 <tuple>` ，指明运行时的 "
+"SQLite 库的版本号。"
 
 #: ../../library/sqlite3.rst:472
 msgid ""
@@ -629,6 +650,11 @@ msgid ""
 "not always be true. You can check the underlying SQLite library's compile-"
 "time threaded mode using the following query::"
 msgstr ""
+"由 DB-API 所需要的整数常量，指明 :mod:`!sqlite3` 模块支持的线程安全 (thread "
+"safety) 等级。目前硬编码为 ``1``，表示 *线程可能会分享模块 (module) ，但不会"
+"分享连接 (connections)* 。然而，这可能不会总是正确的，即它无法完全确保它所指"
+"明的情况总是为真。您可以通过使用以下查询以检查底层的 SQLite 库在编译时的线程"
+"模式 (threaded mode) ："
 
 #: ../../library/sqlite3.rst:485
 msgid ""
@@ -643,16 +669,20 @@ msgid ""
 "Version number of this module as a :class:`string <str>`. This is not the "
 "version of the SQLite library."
 msgstr ""
+"一个 :class:`字符串 <str>` ，指明模块的版本号。请注意，它并不是 SQLite 库的"
+"版本号。"
 
 #: ../../library/sqlite3.rst:496
 msgid ""
 "Version number of this module as a :class:`tuple` of :class:`integers "
 "<int>`. This is not the version of the SQLite library."
 msgstr ""
+"一个由 :class:`整数 <int>` 组成的 :class:`元组 <tuple>` ，指明模块的版本号。"
+"请注意，它并不是 SQLite 库的版本号。"
 
 #: ../../library/sqlite3.rst:503
 msgid "Connection objects"
-msgstr ""
+msgstr "连接对象 (Connection objects)"
 
 #: ../../library/sqlite3.rst:507
 msgid ""
@@ -660,6 +690,9 @@ msgid ""
 "is created using :func:`sqlite3.connect`. Their main purpose is creating :"
 "class:`Cursor` objects, and :ref:`sqlite3-controlling-transactions`."
 msgstr ""
+"每一个由函数 :func:`sqlite3.connect` 创建的 ``Connection`` 对象都代表着一个"
+"打开的 SQLite 数据库。它们的主要目标是创建一个 :class:`Cursor` 对象与 :ref:"
+"`sqlite3-controlling-transactions` 。"
 
 #: ../../library/sqlite3.rst:514
 msgid ":ref:`sqlite3-connection-shortcuts`"
