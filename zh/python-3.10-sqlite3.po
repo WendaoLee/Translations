@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Python 3.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-22 04:31+0000\n"
-"PO-Revision-Date: 2022-11-23 14:49+0800\n"
+"PO-Revision-Date: 2022-11-26 11:42+0800\n"
 "Last-Translator: LeeWendao <LeeWendao@outlook.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/python-doc/"
 "teams/5390/zh_CN/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #: ../../library/sqlite3.rst:2
 msgid ":mod:`sqlite3` --- DB-API 2.0 interface for SQLite databases"
@@ -709,18 +709,25 @@ msgid ""
 "single optional parameter *factory*. If supplied, this must be a callable "
 "returning an instance of :class:`Cursor` or its subclasses."
 msgstr ""
+"创建并返回一个 :class:`Cursor` 对象。该方法接受一个可选的形式参数 "
+"*factory* 。如果要提供该参数，请确保该参数是一个能够返回从属于 :class:"
+"`Cursor` 类或其子类的实例的可调用参数。"
 
 #: ../../library/sqlite3.rst:528
 msgid ""
 "Commit any pending transaction to the database. If there is no open "
 "transaction, this method is a no-op."
 msgstr ""
+"向数据库提交任何未决事务 (pending transaction) 。如果不存在打开的事务，那么"
+"该方法便没有作用。"
 
 #: ../../library/sqlite3.rst:533
 msgid ""
 "Roll back to the start of any pending transaction. If there is no open "
 "transaction, this method is a no-op."
 msgstr ""
+"回滚到任何未决事务 (pending transaction) 的起点处。如果不存在打开的事务，那"
+"么该方法便没有作用。"
 
 #: ../../library/sqlite3.rst:538
 msgid ""
@@ -728,6 +735,9 @@ msgid ""
 "implicitly; make sure to :meth:`commit` before closing to avoid losing "
 "pending changes."
 msgstr ""
+"关闭数据库连接。任何未决事务 (pending transaction) 都不会被隐式提交，即所有"
+"未提交的事务都会丢失。请确保您在关闭数据库连接前调用方法 :meth:`commit` ，以"
+"避免丢失任何挂起 (pending) 的更改。"
 
 #: ../../library/sqlite3.rst:545
 msgid ""
@@ -755,17 +765,19 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:563
 msgid "Create or remove a user-defined SQL function."
-msgstr ""
+msgstr "创建或移除一个由用户定义的 SQL 函数。"
 
 #: ../../library/sqlite3.rst:565
 msgid "The name of the SQL function."
-msgstr ""
+msgstr "SQL 函数的名称。"
 
 #: ../../library/sqlite3.rst:568
 msgid ""
 "The number of arguments the SQL function can accept. If ``-1``, it may take "
 "any number of arguments."
 msgstr ""
+"SQL 函数可接受的参数数量。如果将它的值设置为 ``-1`` ，那么它可以接受任意数量"
+"的参数。"
 
 #: ../../library/sqlite3.rst:572
 msgid ""
@@ -773,6 +785,9 @@ msgid ""
 "must return :ref:`a type natively supported by SQLite <sqlite3-types>`. Set "
 "to ``None`` to remove an existing SQL function."
 msgstr ""
+"当 SQL 函数被调用时，所唤起的一个可调用对象 (callable) 。该可调用对象应该返"
+"回 :ref:`一个 SQLite 原生支持的类型 <sqlite3-types>` 。如果将它设置为 "
+"``None`` ，那么将会移除一个现存的 SQL 函数。"
 
 #: ../../library/sqlite3.rst:579
 msgid ""
@@ -780,18 +795,23 @@ msgid ""
 "sqlite.org/deterministic.html>`_, which allows SQLite to perform additional "
 "optimizations."
 msgstr ""
+"如果将该参数值设置为 ``True`` ，那么创建的 SQL 函数将会被标记为确定性的 "
+"( `deterministic <https://sqlite.org/deterministic.html>` ) ，这将允许 "
+"SQLite 进行额外的优化。"
 
 #: ../../library/sqlite3.rst:0
 msgid "Raises"
-msgstr ""
+msgstr "异常抛出"
 
 #: ../../library/sqlite3.rst:584
 msgid "If *deterministic* is used with SQLite versions older than 3.8.3."
 msgstr ""
+"当使用 *deterministic* 参数时，若此时使用的 SQLite 版本低于 3.8.3 ，那么该异"
+"常便会抛出。"
 
 #: ../../library/sqlite3.rst:587
 msgid "The *deterministic* parameter."
-msgstr ""
+msgstr "添加参数 *deterministic* 。"
 
 #: ../../library/sqlite3.rst:590 ../../library/sqlite3.rst:628
 #: ../../library/sqlite3.rst:847 ../../library/sqlite3.rst:953
@@ -802,17 +822,19 @@ msgstr "示例:"
 
 #: ../../library/sqlite3.rst:606
 msgid "Create or remove a user-defined SQL aggregate function."
-msgstr ""
+msgstr "创建或移除由用户定义的聚合函数 (aggregate function) 。"
 
 #: ../../library/sqlite3.rst:608
 msgid "The name of the SQL aggregate function."
-msgstr ""
+msgstr "SQL 聚合函数的名称。"
 
 #: ../../library/sqlite3.rst:611
 msgid ""
 "The number of arguments the SQL aggregate function can accept. If ``-1``, "
 "it may take any number of arguments."
 msgstr ""
+"该 SQL 聚合函数可接受的参数数量。如果将它的值设置为 ``-1`` ，那么它可以接受"
+"任意数量的参数。"
 
 #: ../../library/sqlite3.rst:615
 msgid ""
@@ -822,30 +844,38 @@ msgid ""
 "number of arguments that the ``step()`` method must accept is controlled by "
 "*n_arg*.  Set to ``None`` to remove an existing SQL aggregate function."
 msgstr ""
+"一个类，它必需实现下列方法：*``step()``*：向聚合 (aggregate) 中添加新行。"
+"*``finalize()``：将聚合 (aggregate) 的最终结果作为 :ref:`SQLite 原生支持的类"
+"型 <sqlite3-types>` 返回。 ``step()`` 方法必需接受的参数数量由 *n_arg* 控"
+"制。 将该参数 (aggregate_class) 设置为 ``None`` 将会移除现存的 SQL 聚合函"
+"数。"
 
 #: ../../library/sqlite3.rst:616
 msgid "A class must implement the following methods:"
-msgstr ""
+msgstr "一个类，它必需实现下列方法："
 
 #: ../../library/sqlite3.rst:618
 msgid "``step()``: Add a row to the aggregate."
-msgstr ""
+msgstr "``step()``：向聚合 (aggregate) 中添加新行。"
 
 #: ../../library/sqlite3.rst:619
 msgid ""
 "``finalize()``: Return the final result of the aggregate as :ref:`a type "
 "natively supported by SQLite <sqlite3-types>`."
 msgstr ""
+"``finalize()``：将聚合 (aggregate) 的最终结果作为 :ref:`SQLite 原生支持的类"
+"型 <sqlite3-types>` 返回。"
 
 #: ../../library/sqlite3.rst:622
 msgid ""
 "The number of arguments that the ``step()`` method must accept is "
 "controlled by *n_arg*."
-msgstr ""
+msgstr " ``step()`` 方法必需接受的参数数量由 *n_arg* 控制。 "
 
 #: ../../library/sqlite3.rst:625
 msgid "Set to ``None`` to remove an existing SQL aggregate function."
 msgstr ""
+"将该参数 (aggregate_class) 设置为 ``None`` 将会移除现存的 SQL 聚合函数。"
 
 #: ../../library/sqlite3.rst:660
 msgid ""
@@ -874,13 +904,15 @@ msgstr "下面的例子显示了一个反向排序的排序方法:"
 
 #: ../../library/sqlite3.rst:696
 msgid "Remove a collation function by setting *callable* to ``None``."
-msgstr ""
+msgstr "将 *callable* 设置为 ``None`` 将移除一个排序函数。"
 
 #: ../../library/sqlite3.rst:701
 msgid ""
 "Call this method from a different thread to abort any queries that might be "
 "executing on the connection. Aborted queries will raise an exception."
 msgstr ""
+"从不同的线程调用此方法以中止任何可能正在连接上执行的查询。被终止的查询将会抛"
+"出异常 (exception) 。"
 
 #: ../../library/sqlite3.rst:708
 msgid ""
