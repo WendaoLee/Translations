@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Python 3.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-22 04:31+0000\n"
-"PO-Revision-Date: 2022-11-27 15:31+0800\n"
+"PO-Revision-Date: 2022-11-29 11:15+0800\n"
 "Last-Translator: LeeWendao <LeeWendao@outlook.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/python-doc/"
 "teams/5390/zh_CN/)\n"
@@ -1086,26 +1086,31 @@ msgid ""
 "when saving an in-memory database for later restoration. Similar to the ``."
 "dump`` command in the :program:`sqlite3` shell."
 msgstr ""
+"返回一个迭代器 (:term:`iterator`) 以将数据库转储 (dump) 为 SQL 源代码。这在"
+"保存内存数据库 (in-memory database) 以供以后恢复时十分有用。它类似于 :"
+"program:`sqlite3` shell 中的 ``.dump`` 命令。"
 
 #: ../../library/sqlite3.rst:861
 msgid "Create a backup of an SQLite database."
-msgstr ""
+msgstr "创建一个 SQLite 数据库的备份。"
 
 #: ../../library/sqlite3.rst:863
 msgid ""
 "Works even if the database is being accessed by other clients or "
 "concurrently by the same connection."
-msgstr ""
+msgstr "即使数据库在被其他客户端或同一连接同时访问时，它依然能发挥作用。"
 
 #: ../../library/sqlite3.rst:866
 msgid "The database connection to save the backup to."
-msgstr ""
+msgstr "要保存备份的数据库的数据库连接。"
 
 #: ../../library/sqlite3.rst:869
 msgid ""
 "The number of pages to copy at a time. If equal to or less than ``0``, the "
 "entire database is copied in a single step. Defaults to ``-1``."
 msgstr ""
+"一次复制的页面数量。如果它的值等于或小于 ``0``，那么整个数据库将在一个步骤中"
+"被复制。默认值为 ``-1`` 。"
 
 #: ../../library/sqlite3.rst:875
 msgid ""
@@ -1114,6 +1119,10 @@ msgid ""
 "number of pages still to be copied, and the *total* number of pages. "
 "Defaults to ``None``."
 msgstr ""
+"如果将它设置为一个可调用的回调函数 (callable) ，那么它会在每次备份迭代 "
+"(backup iteration) 时被调用，并且带有以下三个整数参数：最近一次迭代的的状态"
+"（形式参数 *status*），需要复制的剩余页数（形式参数 *remaining*）以及总页数"
+"（形式参数 *total*）。默认值为 ``None``。"
 
 #: ../../library/sqlite3.rst:884
 msgid ""
@@ -1121,32 +1130,37 @@ msgid ""
 "the main database, ``\"temp\"`` for the temporary database, or the name of "
 "a custom database as attached using the ``ATTACH DATABASE`` SQL statement."
 msgstr ""
+"需要备份的数据库的名称。可以是主数据库的 ``main``（默认值），也可以是临时数"
+"据库的 ``\"temp\"``，或者是使用SQL语句 ``ATTACH DATABASE`` 连接的自定义数据"
+"库的名称。"
 
 #: ../../library/sqlite3.rst:891
 msgid ""
 "The number of seconds to sleep between successive attempts to back up "
 "remaining pages."
-msgstr ""
+msgstr "在连续尝试备份剩余页面之间睡眠秒数。"
 
 #: ../../library/sqlite3.rst:895
 msgid "Example 1, copy an existing database into another:"
-msgstr ""
+msgstr "这是例1，它将一个现存的数据库复制到另一个数据库："
 
 #: ../../library/sqlite3.rst:914
 msgid "Example 2, copy an existing database into a transient copy:"
-msgstr ""
+msgstr "这是例2，它将一个现存的数据库复制到临时拷贝中："
 
 #: ../../library/sqlite3.rst:926
 msgid ""
 "This read-only attribute corresponds to the low-level SQLite `autocommit "
 "mode`_."
-msgstr ""
+msgstr "这是一个只读属性，它对应于低层次的 SQLite  `autocommit mode`_."
 
 #: ../../library/sqlite3.rst:929
 msgid ""
 "``True`` if a transaction is active (there are uncommitted changes), "
 "``False`` otherwise."
 msgstr ""
+"如果一个事务仍处于激活状态（这意味着存在没有提交的更改），那么它的值是 "
+"``True``，否则是 ``False``。"
 
 #: ../../library/sqlite3.rst:936
 msgid ""
@@ -1157,12 +1171,20 @@ msgid ""
 "underlying `SQLite transaction behaviour`_, implicit :ref:`transaction "
 "management <sqlite3-controlling-transactions>` is performed."
 msgstr ""
+"该属性控制由 :mod:`!sqlite3`模块执行的 :ref:`事务处理 <sqlite3-controlling-"
+"transactions>` 。如果将该属性设置为``None``，那么事务将永远不会被隐式地打"
+"开。如果将它设置为 ``\"DEFERRED\"``、``\"IMMEDIATE\"``、``\"EXCLUSIVE\"`` 中"
+"的任意一个，那么 :ref:`事务管理 (transaction management) <sqlite3-"
+"controlling-transactions>` 将会隐式地根据其对应的 `SQLite transaction "
+"behaviour`_ 执行。"
 
 #: ../../library/sqlite3.rst:944
 msgid ""
 "If not overridden by the *isolation_level* parameter of :func:`connect`, "
 "the default is ``\"\"``, which is an alias for ``\"DEFERRED\"``."
 msgstr ""
+"如果没有使用函数 :func:`connect` 的形式参数 *isolation_level* 将该属性覆写，"
+"那么它的默认值会是 ``\"\"``，该默认值是 ``\"DEFERRED\"`` 的别名。"
 
 #: ../../library/sqlite3.rst:949
 msgid ""
@@ -1170,6 +1192,9 @@ msgid ""
 "row results as a :class:`tuple`, and returns a custom object representing "
 "an SQLite row."
 msgstr ""
+"一个可调用对象 (callable) ，它接受两个形式参数：一个是 :class:`Cursor` 对"
+"象，另一个则是作为 :class:`tuple` 表示的原始行结果。它返回一个代表 SQLite 行"
+"的自定义对象。"
 
 #: ../../library/sqlite3.rst:966
 msgid ""
