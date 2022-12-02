@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Python 3.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-22 04:31+0000\n"
-"PO-Revision-Date: 2022-11-29 11:15+0800\n"
+"PO-Revision-Date: 2022-12-02 10:47+0800\n"
 "Last-Translator: LeeWendao <LeeWendao@outlook.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/python-doc/"
 "teams/5390/zh_CN/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: ../../library/sqlite3.rst:2
 msgid ":mod:`sqlite3` --- DB-API 2.0 interface for SQLite databases"
@@ -1205,6 +1205,12 @@ msgid ""
 "overhead. It will probably be better than your own custom dictionary-based "
 "approach or even a db_row based solution."
 msgstr ""
+"如果单纯返回一个元组还不够，您还想对列进行基于名字的访问 (name-based "
+"access) ，您应该考虑将属性 :attr:`row_factory` 设置为高度优化的 :class:"
+"`sqlite3.Row` 类型。 :class:`Row` 同时提供了基于索引的 (index-based) 和大小"
+"写敏感的、基于名字 (case-insensitive name-based) 的对列的访问，并且它们几乎"
+"没有内存开销。它可能比您自己定义的基于字典的解决方法 (dictionary-based "
+"approach) 或甚至基于 db_row 的解决方法要好。"
 
 #: ../../library/sqlite3.rst:977
 msgid ""
@@ -1213,16 +1219,20 @@ msgid ""
 "``TEXT`` data type. By default, this attribute is set to :class:`str`. If "
 "you want to return ``bytes`` instead, set *text_factory* to ``bytes``."
 msgstr ""
+"一个可调用对象 (callable) ，它接受一个 :class:`bytes` 作为形式参数并且返回该"
+"参数的文本表示。该调用对象将为数据类型为 ``TEXT`` 的 SQLite 值调用。默认情况"
+"下，该属性将被设置为 :class:`str` ，这意味着它总是返回一个字符串。如果您想返"
+"回 `bytes` ，请将*text_factory*设置为`bytes`。"
 
 #: ../../library/sqlite3.rst:1017
 msgid ""
 "Return the total number of database rows that have been modified, inserted, "
 "or deleted since the database connection was opened."
-msgstr ""
+msgstr "返回自数据库连接打开后，被修改、插入或者删除的数据库行的总行数。"
 
 #: ../../library/sqlite3.rst:1023
 msgid "Cursor objects"
-msgstr ""
+msgstr "游标对象 (Cursor Objects)"
 
 #: ../../library/sqlite3.rst:1025
 msgid ""
@@ -1231,6 +1241,10 @@ msgid ""
 "Cursors are created using :meth:`Connection.cursor`, or by using any of "
 "the :ref:`connection shortcut methods <sqlite3-connection-shortcuts>`."
 msgstr ""
+"一个游标对象 (``Cursor`` object) 代表一个用于执行 SQL 语句、管理从获取操作 "
+"(fetch operation) 中获取的内容 (context) 的数据库游标 (`database_cursor`) 。"
+"游标通过方法 :meth:`Connection.cursor` 或者通过任何 一个:ref:`数据库连接的快"
+"捷方法 <sqlite3-connection-shortcuts>` 创建。"
 
 #: ../../library/sqlite3.rst:1032
 msgid ""
@@ -1238,6 +1252,9 @@ msgid ""
 "`~Cursor.execute` a ``SELECT`` query, you can simply iterate over the "
 "cursor to fetch the resulting rows:"
 msgstr ""
+"游标对象是 :term:`迭代器<iterator>` ，这意味着如果你使用 :meth:`~Cursor."
+"execute` 执行一个 ``SELECT`` 查询，你可以简单地通过在游标上执行迭代来获取结"
+"果行："
 
 #: ../../library/sqlite3.rst:1057
 msgid "A :class:`Cursor` instance has the following attributes and methods."
@@ -1249,6 +1266,9 @@ msgid ""
 "`placeholders <sqlite3-placeholders>` that map to the :term:`sequence` or :"
 "class:`dict` *parameters*."
 msgstr ""
+"执行 SQL 语句（对应形式参数 *sql*）。您可以使用映射序列 (:term:`sequence` ) "
+"或字典 (:class:`dict`) 的 :ref:`占位符 <sqlite3-placeholders>` 将值绑定到 "
+"SQL 语句中（对应形式参数 *parameters*）。"
 
 #: ../../library/sqlite3.rst:1069
 msgid ""
@@ -1268,6 +1288,9 @@ msgid ""
 "no open transaction, a transaction is implicitly opened before executing "
 "*sql*."
 msgstr ""
+"如果属性 :attr:`~Connection.isolation_level` 的值不是 ``None``，并且*sql* 是"
+"一个 ``INSERT``、``UPDATE``、 ``DELETE``、 或 ``REPLACE``语句，并且现在没有"
+"打开的事务 (transaction) ，那么在执行 *sql* 语句前将会隐式打开一个事务。"
 
 #: ../../library/sqlite3.rst:1082
 msgid ""
@@ -1277,6 +1300,10 @@ msgid ""
 "parameters instead of a sequence. Uses the same implicit transaction "
 "handling as :meth:`~Cursor.execute`."
 msgstr ""
+"执行一个 :ref:`已参数化了的 <sqlite3-placeholders>` SQL 语句 *sql*，此时，序"
+"列参数（对应形式参数*paramter*）中能够找到的所有参数序列或映射都应完成参数"
+"化。同样，您可以使用一个迭代器 (:term:`iterator`) 生成参数，而不是使用一个序"
+"列生成参数。它和 :meth:`~Cursor.execute` 使用同样的隐式事务处理。"
 
 #: ../../library/sqlite3.rst:1101
 msgid ""
@@ -1285,10 +1312,14 @@ msgid ""
 "implicit transaction control is performed; any transaction control must be "
 "added to *sql_script*."
 msgstr ""
+"执行形式参数 *sql_script* 中的 SQL 语句。如果在执行时仍有一个未决事务 "
+"(pending transaction) ，那么首先会隐式地执行一个 ``COMMIT`` 语句。请注意，除"
+"此之外，它不会执行任何隐式的事务控制；因此，任何关于事务控制的内容都应添加"
+"到 *sql_script* 中。"
 
 #: ../../library/sqlite3.rst:1107
 msgid "*sql_script* must be a :class:`string <str>`."
-msgstr ""
+msgstr "*sql_script*  必须是 :class:`string<str>`"
 
 #: ../../library/sqlite3.rst:1125
 msgid ""
