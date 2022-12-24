@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Python 3.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-22 04:31+0000\n"
-"PO-Revision-Date: 2022-12-02 10:47+0800\n"
+"PO-Revision-Date: 2022-12-24 22:07+0800\n"
 "Last-Translator: LeeWendao <LeeWendao@outlook.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/python-doc/"
 "teams/5390/zh_CN/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.2\n"
 
 #: ../../library/sqlite3.rst:2
 msgid ":mod:`sqlite3` --- DB-API 2.0 interface for SQLite databases"
@@ -1327,12 +1327,17 @@ msgid ""
 "result set as a :class:`tuple`. Else, pass it to the row factory and return "
 "its result. Return ``None`` if no more data is available."
 msgstr ""
+"如果 :attr:`~Connection.row_factory` 为 ``None`` ，那么将以一个 :class:"
+"`tuple` 返回下一个行查询结果集，否则将其传递给行工厂 (row factory) 并返回其"
+"结果。如果没有更多可用的数据，那么将会返回 ``None`` 。"
 
 #: ../../library/sqlite3.rst:1133
 msgid ""
 "Return the next set of rows of a query result as a :class:`list`. Return an "
 "empty list if no more rows are available."
 msgstr ""
+"以 :class:`list` 的形式返回下一组查询结果的行。如果没有更多可用的数据，那么"
+"它将返回一个空列表。"
 
 #: ../../library/sqlite3.rst:1136
 msgid ""
@@ -1341,6 +1346,9 @@ msgid ""
 "be fetched. If fewer than *size* rows are available, as many rows as are "
 "available are returned."
 msgstr ""
+"每次调用执行时获取的行的数量由形式参数 *size* 指定。如果形式参数 *size* 没有"
+"给出，那么属性 :attr:`arraysize` 决定了要获取的行的数量。如果可用于查询的数"
+"据行数少于 *size* 指定的行数，那么它将返回所有可用的数据行。"
 
 #: ../../library/sqlite3.rst:1142
 msgid ""
@@ -1359,6 +1367,9 @@ msgid ""
 "empty list if no rows are available. Note that the :attr:`arraysize` "
 "attribute can affect the performance of this operation."
 msgstr ""
+"以 :class:`list` 的形式返回一个查询结果的所有（剩余的）数据行。如果没有可用"
+"的行，那么将返回一个空列表。请注意， :attr:`arraysize` 属性将影响这一操作的"
+"性能。"
 
 #: ../../library/sqlite3.rst:1156
 msgid "Close the cursor now (rather than whenever ``__del__`` is called)."
@@ -1376,6 +1387,7 @@ msgstr ""
 #: ../../library/sqlite3.rst:1163 ../../library/sqlite3.rst:1167
 msgid "Required by the DB-API. Does nothing in :mod:`!sqlite3`."
 msgstr ""
+"这是一个为 DB-API 所需要的方法。它在模块 :mod:`!sqlite3` 中没有任何作用。"
 
 #: ../../library/sqlite3.rst:1171
 msgid ""
@@ -1393,6 +1405,9 @@ msgid ""
 "`con.cursor() <Connection.cursor>` will have a :attr:`connection` attribute "
 "that refers to *con*:"
 msgstr ""
+"这是一个只读属性，它将提供属于该游标的 SQLite 数据库 :class:`Connection` 。"
+"一个使用方法 :meth:`con.cursor() <Connection.cursor>` 创建的 :class:"
+"`Cursor` 对象将会有一个指向数据库连接 *con* 的 :attr:`connection` 的属性。"
 
 #: ../../library/sqlite3.rst:1190
 msgid ""
@@ -1400,6 +1415,8 @@ msgid ""
 "remain compatible with the Python DB API, it returns a 7-tuple for each "
 "column where the last six items of each tuple are ``None``."
 msgstr ""
+"这是一个只读属性，它提供最后一次查询的列名。为了与 Python DB API 兼容，它将"
+"为每一列返回一个7元组 (7-tuple) ，其中每个元组的最后六项是 `None`。"
 
 #: ../../library/sqlite3.rst:1194
 msgid "It is set for ``SELECT`` statements without any matching rows as well."
@@ -1414,6 +1431,10 @@ msgid ""
 "value of ``lastrowid`` is left unchanged.  The initial value of "
 "``lastrowid`` is ``None``."
 msgstr ""
+"这是一个只读属性，它将提供最后一次插入行的 行id 。它只会在使用方法 :meth:"
+"`execute` 成功执行 ``INSERT`` 或 ``REPLACE`` 语句后被更新。对于其他语句，使"
+"用方法 :meth:`executemany` 或使用方法 :meth:`executescript` 或插入操作失败都"
+"不会使 ``lastrowid`` 的值发生更新。``lastrowid`` 的默认值是 ``None`` 。"
 
 #: ../../library/sqlite3.rst:1206
 msgid "Inserts into ``WITHOUT ROWID`` tables are not recorded."
@@ -1431,10 +1452,14 @@ msgid ""
 "queries. It is only updated by the :meth:`execute` and :meth:`executemany` "
 "methods."
 msgstr ""
+"这是一个只读属性。对于语句 ``INSERT``、``DELETE``、``REPLACE`` ，它将提供这"
+"些语句所修改的行数；对于其他语句，包括 :abbr:`CTE (Common Table "
+"Expression)` 查询，它的值将会是 ``-1``。它的值只会在执行方法 :meth:"
+"`execute` 与方法 :meth:`executemany` 时发生更新。"
 
 #: ../../library/sqlite3.rst:1228
 msgid "Row objects"
-msgstr ""
+msgstr "行对象 (Row objects)"
 
 #: ../../library/sqlite3.rst:1232
 msgid ""
@@ -1443,10 +1468,14 @@ msgid ""
 "equality testing, :func:`len`, and :term:`mapping` access by column name "
 "and index."
 msgstr ""
+"作为一个高度优化的 :attr:`~Connection.row_factory` ，:class:`!Row` 实例主要"
+"用于 :class:`Connection` 对象。它支持迭代、相等测试 (equality testing) 、使"
+"用函数 :func:`len` 与通过列名与索引进行访问的映射。"
 
 #: ../../library/sqlite3.rst:1237
 msgid "Two row objects compare equal if have equal columns and equal members."
 msgstr ""
+"如果两个行对象具有相等的列与相等的成员，那么当它们两个比较时它们是相等的。 "
 
 #: ../../library/sqlite3.rst:1241
 msgid ""
@@ -1454,6 +1483,8 @@ msgid ""
 "Immediately after a query, it is the first member of each tuple in :attr:"
 "`Cursor.description`."
 msgstr ""
+"返回一个由类型为 :class:`strings <str>` 的列名组成的 :class:`list` 。若在查"
+"询之后调用，它会返回 :attr:`Cursor.description` 中每个元组的第一个成员。"
 
 #: ../../library/sqlite3.rst:1245
 msgid "Added support of slicing."
@@ -1461,7 +1492,7 @@ msgstr "添加了对切片操作的支持。"
 
 #: ../../library/sqlite3.rst:1265
 msgid "PrepareProtocol objects"
-msgstr ""
+msgstr "预备协议对象 (PrepareProtocol objects)"
 
 #: ../../library/sqlite3.rst:1269
 msgid ""
@@ -1469,6 +1500,9 @@ msgid ""
 "adaption protocol for objects that can :ref:`adapt themselves <sqlite3-"
 "conform>` to :ref:`native SQLite types <sqlite3-types>`."
 msgstr ""
+"预备协议类型 (PrepareProtocol type) 的唯一目的是作为一个诠释 :pep:`264` 风格"
+"的适应协议的对象，从而可以将 :ref:`调配它们自身 <sqlite3-conform>` 转化为 :"
+"ref:`原生的 SQLite 类型 <sqlite3-types>` 。"
 
 #: ../../library/sqlite3.rst:1277
 msgid "Exceptions"
