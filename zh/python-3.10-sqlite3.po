@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Python 3.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-22 04:31+0000\n"
-"PO-Revision-Date: 2022-12-25 11:14+0800\n"
+"PO-Revision-Date: 2022-12-30 19:07+0800\n"
 "Last-Translator: LeeWendao <LeeWendao@outlook.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/python-doc/"
 "teams/5390/zh_CN/)\n"
@@ -1759,7 +1759,7 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:1438
 msgid "How to use placeholders to bind values in SQL queries"
-msgstr ""
+msgstr "如何在 SQL 查询中使用占位符绑定值"
 
 #: ../../library/sqlite3.rst:1440
 msgid ""
@@ -1768,6 +1768,9 @@ msgid ""
 "vulnerable to `SQL injection attacks`_ (see the `xkcd webcomic <https://"
 "xkcd.com/327/>`_ for a humorous example of what can go wrong)::"
 msgstr ""
+"通常，SQL 操作需要使用来自 Python 变量的值。然而，我们应小心使用 Python 的字"
+"符串操作来构建我们的查询，因为它们很容易受到 `SQL 注入攻击`_(参见 `xkcd "
+"webcomic<https://xkcd.com/327/>`_ 以了解可能会发生该错误的幽默例子)::"
 
 #: ../../library/sqlite3.rst:1449
 msgid ""
@@ -1797,7 +1800,7 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:1491
 msgid "How to adapt custom Python types to SQLite values"
-msgstr ""
+msgstr "如何将自定义的 Python 类型调整为 SQLite 值"
 
 #: ../../library/sqlite3.rst:1493
 msgid ""
@@ -1805,6 +1808,9 @@ msgid ""
 "Python types in SQLite databases, *adapt* them to one of the :ref:`Python "
 "types SQLite natively understands <sqlite3-types>`."
 msgstr ""
+"SQLite 本身只支持有限的数据类型集。为了在 SQLite 数据库中存储自定义的 "
+"Python 类型，请将它们 *调整* 为 :ref:`SQLite 原生支持的 Python 类型 "
+"<sqlite3-types>` 之一。"
 
 #: ../../library/sqlite3.rst:1497
 msgid ""
@@ -1815,10 +1821,14 @@ msgid ""
 "developer, it may make more sense to take direct control by registering "
 "custom adapter functions."
 msgstr ""
+"有两种方法可以使 Python 对象适配 SQLite 类型：一是让您的对象实现自适配，或是"
+"使用一个 *可调用的适配器 (adapter callable)*，后者优于前者。对于一个输出自定"
+"义类型的库来说，如果使类型能够自适配的话，那么是很有意义的。作为一个应用开发"
+"者，通过注册自定义的适配器函数 (adapter functions) 来直接控制可能更有意义。"
 
 #: ../../library/sqlite3.rst:1509
 msgid "How to write adaptable objects"
-msgstr ""
+msgstr "如何编写可适配的对象"
 
 #: ../../library/sqlite3.rst:1511
 msgid ""
@@ -1829,10 +1839,15 @@ msgid ""
 "``__conform__(self, protocol)`` method which returns the adapted value. The "
 "object passed to *protocol* will be of type :class:`PrepareProtocol`."
 msgstr ""
+"假定我们有一个在笛卡尔坐标系中代表一对坐标 ``x`` 与 ``y`` 的 :class:`!"
+"Point` 类。该坐标对将会使用一个分号进行分隔、以文本字符串的形式存储在数据库"
+"中。这可以通过添加一个返回适配后的结果值的 ``_conform_(self,protocol)`` 方法"
+"来实现。传递给形式参数 *protocol* 的对象将会是类型 :class:"
+"`PrepareProtocol`。"
 
 #: ../../library/sqlite3.rst:1542
 msgid "How to register adapter callables"
-msgstr ""
+msgstr "如何注册可调用的适配器"
 
 #: ../../library/sqlite3.rst:1544
 msgid ""
@@ -1840,10 +1855,12 @@ msgid ""
 "object to an SQLite-compatible type. This function can then be registered "
 "using :func:`register_adapter`."
 msgstr ""
+"另一种可行的方法是创造一个函数，它能够将 Python对象 转换为一个与 SQLite 兼容"
+"的类型。可以使用函数 :func:``register_adapter` 注册该函数。"
 
 #: ../../library/sqlite3.rst:1574
 msgid "How to convert SQLite values to custom Python types"
-msgstr ""
+msgstr "如何将 SQLite 值转换为自定义 Python 类型"
 
 #: ../../library/sqlite3.rst:1576
 msgid ""
@@ -1851,24 +1868,31 @@ msgid ""
 "values. To be able to convert *from* SQLite values *to* custom Python "
 "types, we use *converters*."
 msgstr ""
+"通过撰写一个适配器，您可以将自定义的 Python 类型转换为 SQLite 值。为了能够"
+"将 SQLite 值转换回自定义的 Python 类型，我们使用 *converters*。"
 
 #: ../../library/sqlite3.rst:1581
 msgid ""
 "Let's go back to the :class:`!Point` class. We stored the x and y "
 "coordinates separated via semicolons as strings in SQLite."
 msgstr ""
+"让我们重新把目光放回 :class:`!Point` 类上来。我们通过使用分号分隔的形式将坐"
+"标 x 与 y 作为字符串存储在 SQLite 中。"
 
 #: ../../library/sqlite3.rst:1584
 msgid ""
 "First, we'll define a converter function that accepts the string as a "
 "parameter and constructs a :class:`!Point` object from it."
 msgstr ""
+"首先，我们需要定义一个转换函数 (converter function) ，该转换函数接收字符串作"
+"为它的形式参数，而后从中构筑一个 :class:`!Point` 对象。"
 
 #: ../../library/sqlite3.rst:1589
 msgid ""
 "Converter functions are **always** passed a :class:`bytes` object, no "
 "matter the underlying SQLite data type."
 msgstr ""
+"无论底层的 SQLite 数据类型如何，转换函数总是回传递一个 :class:`bytes` 对象。"
 
 #: ../../library/sqlite3.rst:1598
 msgid ""
@@ -1876,25 +1900,30 @@ msgid ""
 "value. This is done when connecting to a database, using the *detect_types* "
 "parameter of :func:`connect`. There are three options:"
 msgstr ""
+"现在，我们需要告诉 :mod:`!sqlite3` 模块应该在合适转换一个给定的 SQLite 值。"
+"通过使用 :func:`connect` 的形式参数 *detect_types* ，这一项工作将在连接到数"
+"据库时便会被完成。有以下三个选项："
 
 #: ../../library/sqlite3.rst:1602
 msgid "Implicit: set *detect_types* to :const:`PARSE_DECLTYPES`"
-msgstr ""
+msgstr "隐式的：将 *detect_types* 设置为 :const:`PARSE_DECLTYPES`"
 
 #: ../../library/sqlite3.rst:1603
 msgid "Explicit: set *detect_types* to :const:`PARSE_COLNAMES`"
-msgstr ""
+msgstr "显式的：将 *detect_types* 设置为 :const:`PARSE_COLNAMES`"
 
 #: ../../library/sqlite3.rst:1604
 msgid ""
 "Both: set *detect_types* to ``sqlite3.PARSE_DECLTYPES | sqlite3."
 "PARSE_COLNAMES``. Column names take precedence over declared types."
 msgstr ""
+"同样的：将 *detect_types* 设置为 ``sqlite3.PARSE_DECLTYPES | sqlite3."
+"PARSE_COLNAMES``。在此情况下，列名具有比声明类型更高的优先级。"
 
 #: ../../library/sqlite3.rst:1608
 msgid ""
 "The following example illustrates the implicit and explicit approaches:"
-msgstr ""
+msgstr "下面的例子说明了隐式与显式的方式："
 
 #: ../../library/sqlite3.rst:1659
 msgid "Adapter and converter recipes"
