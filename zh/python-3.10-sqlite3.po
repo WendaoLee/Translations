@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Python 3.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-22 04:31+0000\n"
-"PO-Revision-Date: 2022-12-30 19:07+0800\n"
+"PO-Revision-Date: 2022-12-31 18:54+0800\n"
 "Last-Translator: LeeWendao <LeeWendao@outlook.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/python-doc/"
 "teams/5390/zh_CN/)\n"
@@ -696,7 +696,7 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:514
 msgid ":ref:`sqlite3-connection-shortcuts`"
-msgstr ""
+msgstr ":ref:`sqlite3-connection-shortcuts`"
 
 #: ../../library/sqlite3.rst:517
 msgid ""
@@ -1755,7 +1755,7 @@ msgstr ""
 
 #: ../../library/sqlite3.rst:1433
 msgid "How-to guides"
-msgstr ""
+msgstr "How-to guides"
 
 #: ../../library/sqlite3.rst:1438
 msgid "How to use placeholders to bind values in SQL queries"
@@ -1927,15 +1927,15 @@ msgstr "下面的例子说明了隐式与显式的方式："
 
 #: ../../library/sqlite3.rst:1659
 msgid "Adapter and converter recipes"
-msgstr ""
+msgstr "适配器与转换器专题"
 
 #: ../../library/sqlite3.rst:1661
 msgid "This section shows recipes for common adapters and converters."
-msgstr ""
+msgstr "这一节内容展示了一般情况下如何使用适配器与转换器的例子："
 
 #: ../../library/sqlite3.rst:1723
 msgid "How to use connection shortcut methods"
-msgstr ""
+msgstr "如何使用连接的便捷方法"
 
 #: ../../library/sqlite3.rst:1725
 msgid ""
@@ -1948,10 +1948,16 @@ msgid ""
 "statement and iterate over it directly using only a single call on the :"
 "class:`Connection` object."
 msgstr ""
+"通过使用 :class:`~Connection` 类所拥有的方法 :meth:`~Connection.execute`, :"
+"meth:`~Connection.executemant` 与 :meth:`~Connection.executescript`，您的代"
+"码可以写得更加简洁些，因为您无需再显式地创建（这通常是多余的）:class:"
+"`Cursor` 对象。不过，这种情况下 :class:`Cursor` 对象会被隐式地创建并且由这些"
+"快捷方法返回。通过这种方式，您可以只执行一个 ``SELECT`` 语句，并且仅需在 :"
+"class:`Connection` 对象上进行迭代便能得到您想要的结果。"
 
 #: ../../library/sqlite3.rst:1766
 msgid "How to use the connection context manager"
-msgstr ""
+msgstr "如何使用连接上下文管理器"
 
 #: ../../library/sqlite3.rst:1768
 msgid ""
@@ -1962,46 +1968,56 @@ msgid ""
 "fails, or if the body of the ``with`` statement raises an uncaught "
 "exception, the transaction is rolled back."
 msgstr ""
+"一个 :class:`Connection` 对象可以像一个上下文管理器 (context manager) 那般被"
+"使用，在这种情况下当离开上下文管理器的主体时，将会自动提交或回滚打开的事务。"
+"如果 :keyword:`with` 语句的主体在没有异常的情况下完成，那么事务便会被提交；"
+"如果提交失败，或者 ``with`` 语句的主体引发了一个未被捕获异常，那么事务将会回"
+"滚。"
 
 #: ../../library/sqlite3.rst:1777
 msgid ""
 "If there is no open transaction upon leaving the body of the ``with`` "
 "statement, the context manager is a no-op."
 msgstr ""
+"如果在离开 ``with`` 语句的主体时没有打开的事务，那么上下文管理器是无用的。"
 
 #: ../../library/sqlite3.rst:1782
 msgid ""
 "The context manager neither implicitly opens a new transaction nor closes "
 "the connection."
-msgstr ""
+msgstr "上下文管理器既不会隐式地打开一个新事务，也不会关闭连接。"
 
 #: ../../library/sqlite3.rst:1815
 msgid "How to work with SQLite URIs"
-msgstr ""
+msgstr "如何使用 SQLite URIS"
 
 #: ../../library/sqlite3.rst:1817
 msgid "Some useful URI tricks include:"
-msgstr ""
+msgstr "一些有用的 URI 技巧包括："
 
 #: ../../library/sqlite3.rst:1819
 msgid "Open a database in read-only mode:"
-msgstr ""
+msgstr "在只读模式下打开一个数据库："
 
 #: ../../library/sqlite3.rst:1828
 msgid ""
 "Do not implicitly create a new database file if it does not already exist; "
 "will raise :exc:`~sqlite3.OperationalError` if unable to create a new file:"
 msgstr ""
+"如果数据库文件并不存在，那么不显式地创建该文件；如果不能够创建一个新文件，那"
+"么将会抛出 :exc:`~sqlite3.OperationalError` ："
 
 #: ../../library/sqlite3.rst:1838
 msgid "Create a shared named in-memory database:"
-msgstr ""
+msgstr "创建一个共享的具名内存数据库："
 
 #: ../../library/sqlite3.rst:1852
 msgid ""
 "More information about this feature, including a list of parameters, can be "
 "found in the `SQLite URI documentation`_."
 msgstr ""
+"关于该特性的更多信息，包括形式参数的列表，请您参阅 `SQLite URI "
+"documentation`_ 。"
 
 #: ../../library/sqlite3.rst:1861
 msgid "Explanation"
@@ -2009,13 +2025,13 @@ msgstr "说明"
 
 #: ../../library/sqlite3.rst:1866
 msgid "Transaction control"
-msgstr ""
+msgstr "事务控制"
 
 #: ../../library/sqlite3.rst:1868
 msgid ""
 "The :mod:`!sqlite3` module does not adhere to the transaction handling "
 "recommended by :pep:`249`."
-msgstr ""
+msgstr ":mod:`!sqlite3` 模块并不遵守 :pep:`249` 所推荐的事务控制规范。"
 
 #: ../../library/sqlite3.rst:1871
 msgid ""
@@ -2030,6 +2046,14 @@ msgid ""
 "sqlite3` implicitly executes – via the :attr:`~Connection.isolation_level` "
 "attribute."
 msgstr ""
+"如果连接的属性 :attr:`~Connection.isolation_level` 不是 ``None``，那么在方"
+"法 :meth:`~Cursor.execute` 与 :meth:`~Cursor.executemany` 执行 ``INSERT``,"
+"``UPDATE``,``DELETE`` 或 ``REPLACE`` 语句之前新的事务会隐式地打开；对于其他"
+"语句，不执行隐式的事务处理。您可以通过分别使用方法 :meth:`~Connection."
+"commit` 与 :meth:`~Connection.rollback` 完成提交未决事务与回滚未决事务的操"
+"作。您可以通过 :attr:`~Connection.isolation_level` 属性选择底层的 SQLite 事"
+"务行为（参见 `SQLite transaction behaviour`_ ）——即  :mod:`!sqlite3` 模块是"
+"否隐式执行 ``BEGIN`` 语句以及隐式执行哪种类型的 ``BEGIN`` 语句。"
 
 #: ../../library/sqlite3.rst:1884
 msgid ""
@@ -2040,6 +2064,11 @@ msgid ""
 "library autocommit mode can be queried using the :attr:`~Connection."
 "in_transaction` attribute."
 msgstr ""
+"如果将 :attr:`~Connection.isolation_level` 属性设置为 ``None``，那么不会有事"
+"务隐式地打开。这将会让底层的 SQLite 库处于自动提交模式 ( `autocommit "
+"mode`_ ) ，但是这也同样使得用户能够通过使用显式的 SQL 语句执行他们自己的事务"
+"处理。您可以通过使用 :attr:`~Connection.in_transaction` 属性查询底层的 "
+"SQLite 库是否处于自动提交模式。"
 
 #: ../../library/sqlite3.rst:1892
 msgid ""
@@ -2047,9 +2076,13 @@ msgid ""
 "transaction before execution of the given SQL script, regardless of the "
 "value of :attr:`~Connection.isolation_level`."
 msgstr ""
+":meth:`~Cursor.executescript` 方法会在给定的 SQL 脚本执行之前隐式地提交任何"
+"未决地事务，无论 :attr:`~Connection.isolation_level` 如何。"
 
 #: ../../library/sqlite3.rst:1896
 msgid ""
 ":mod:`!sqlite3` used to implicitly commit an open transaction before DDL "
 "statements.  This is no longer the case."
 msgstr ""
+":mod:`!sqlite3` 模块过去会在 DDL 语句前隐式地提交一个打开地事务。现在不会再"
+"这样了。"
